@@ -37,8 +37,7 @@ public class Reaction {
     }
 
     public int getPostId() {
-        //TODO: get postId from Post model
-        return 0;
+        return postId;
     }
 
     public void setPostId(int postId) {

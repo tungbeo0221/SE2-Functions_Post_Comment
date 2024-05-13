@@ -6,6 +6,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class PostController {
-    @Autowired
-    PostRepository postRepository;
+  @Autowired
+  PostRepository postRepository;
 }

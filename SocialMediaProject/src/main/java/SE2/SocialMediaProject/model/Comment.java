@@ -4,20 +4,19 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-
 @Entity
-@Table(name="comments")
+@Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "commentId", nullable = false)
     private Long commentId;
 
-    @Column(name="userId", nullable = false)
+    @Column(name = "userId", nullable = false)
     private Long userId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(name="postId", nullable = false)
+    @JoinColumn(name = "postId", nullable = false)
     private Post post;
 
     @Column(nullable = false)

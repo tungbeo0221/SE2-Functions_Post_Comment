@@ -2,51 +2,54 @@ package SE2.SocialMediaProject.model;
 
 import jakarta.persistence.*;
 
-import org.springframework.cglib.core.Local;
-
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Date;
-//sql.Date class represents a date in the format “YYYY-MM-DD”,
-// without a time component, while the java. util.Date class represents a date and time
 
 @Entity
-@Table(name="posts")
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postId", nullable = false)
-    private Long postId;
+    @Column(nullable = false)
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="userId")
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;
 
+    @Column
     private String status;
 
+    @Column(name = "imageUrl")
     private String imageUrl;
 
-    private LocalDateTime postDate;
+    @Column
+    private LocalDateTime createAt;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
+    @Column
+    private String title;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    public Long getPostId() {
-        return postId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUserId(User user) {
-        this.user = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getStatus() {
@@ -65,19 +68,36 @@ public class Post {
         this.imageUrl = imageUrl;
     }
 
-    public LocalDateTime getPostDate() {
-        return postDate;
+    public LocalDateTime getCreateAt() {
+        return createAt;
     }
 
-    public void setPostDate(LocalDateTime postDate) {
-        this.postDate = postDate;
+    public void setCreateAt(LocalDateTime createAt) {
+        this.createAt = createAt;
     }
 
-    public List<Comment> getComments(){
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments){
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
 }
