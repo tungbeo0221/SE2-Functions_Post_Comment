@@ -10,7 +10,7 @@
   <div th:insert="header"></div>
   <div class="container">
     <div th:each="post : ${posts}" class="card">
-      <div class="post-item" th:href="'/posts/' + ${post.id}">
+      <div class="post-item" th:href="'/posts/' + ${post.id}" th:onclick="handleOnClick([[${post.id}]])">
         <div class="post-user-tags">
           <div class="post-user">
             <img 
@@ -36,12 +36,16 @@
           </div>
         </div>
         <h5 class="post-title" th:utext="${post.title}">Post title</h5>
-        <a href="#" th:href="'/posts/' + ${post.id}" th:text="${'Read more'}" class="card-link">
-
-          
-        </a>
       </div>
     </div>
   </div>
+
+  <script th:inline="javascript">
+    const postItem = document.querySelector(".post-item")
+
+    const handleOnClick = (postId) => {
+      window.location.href = '/posts/' + postId
+    }
+  </script>
 </body>
 </html>
