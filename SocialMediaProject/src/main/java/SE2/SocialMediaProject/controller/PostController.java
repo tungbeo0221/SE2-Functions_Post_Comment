@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,11 +79,15 @@ public class PostController {
 
   @PutMapping("/{id}")
   public String editPost(@RequestBody Post newPost, @PathVariable Long id, Model model) {
-    return postRepository.findById(id)
-        .map(post -> {
-          model.addAttribute("editedPost", post);
-          return "editPost";
-        })
-        .orElse("redirect:/");
+    return postRepository.findById(id).map(post -> {
+      model.addAttribute("editedPost", post);
+      return "editPost";
+    }).orElse("redirect:/");
+  }
+
+  @DeleteMapping("/{id}")
+  public String deletePost(@PathVariable Long id) {
+    postRepository.deleteById(id);
+    return "redirect:/";
   }
 }

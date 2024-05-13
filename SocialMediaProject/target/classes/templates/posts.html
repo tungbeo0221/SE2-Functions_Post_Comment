@@ -3,24 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Posts</title>
-
-  <!-- Link Bootstrap WebJar -->
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous"
-        th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
-  >
+  <link rel="stylesheet" th:href="@{/style/posts.css}">
+  <link href='https://fonts.googleapis.com/css?family=Outfit' rel='stylesheet'>
 </head>
 <body>
-  <!-- Insert the header frament -->
   <div th:insert="header"></div>
   <div class="container">
-    <!-- For each post -->
     <div th:each="post : ${posts}" class="card">
-      <div class="card-body">
-        <h5 class="card-title" th:utext="${post.title}">Post title</h5>
-        <a href="#" th:href="'/posts/' + ${post.id}" th:text="${'Read more'}" class="card-link">Read more</a>
+      <div class="post-item" th:href="'/posts/' + ${post.id}">
+        <div class="post-user-tags">
+          <div class="post-user">
+            <img 
+              class="user-avatar" 
+              src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" 
+              alt="avatar"
+            >
+            <div class="user-username-post-date">
+              <span class="user-username">David Johnson</span>
+              <span class="post-date">8 hours ago</span>
+            </div>
+            <div class="post-tags">
+              <div class="post-tag">
+                # Technology
+              </div>
+              <div class="post-tag">
+                # Artificial Intelligence
+              </div>
+              <div class="post-tag">
+                # Technology
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5 class="post-title" th:utext="${post.title}">Post title</h5>
+        <a href="#" th:href="'/posts/' + ${post.id}" th:text="${'Read more'}" class="card-link">
+
+          
+        </a>
       </div>
     </div>
   </div>

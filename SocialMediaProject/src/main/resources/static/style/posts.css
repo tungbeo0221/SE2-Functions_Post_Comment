@@ -1,0 +1,96 @@
+ListPosts.css
+body {
+  background-color: #EAEAEA;
+  font-family: "Outfit", sans-serif;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#container {
+  width: 800px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease;
+  gap: 0;
+  padding: 15px;
+}
+
+.post-item:hover {
+  background-color: #f2f2f2;
+}
+
+.post-title {
+  font-family: "Outfit";
+  font-weight: bold;
+  font-weight: 700;
+  font-size: 36px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.post-content {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.post-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-username-post-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-username {
+  font-family: "Outfit";
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.post-date {
+  font-family: "Outfit";
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.post-tags {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.post-tag {
+  border-radius: 8px;
+  background-color: #1736F5;
+  padding: 5px;
+  color: #FFFFFF;
+  font-family: "Outfit";
+  font-weight: 400;
+  font-size: 12px;
+}
