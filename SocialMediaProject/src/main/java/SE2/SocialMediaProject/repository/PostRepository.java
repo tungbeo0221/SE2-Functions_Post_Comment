@@ -1,9 +1,10 @@
 package SE2.SocialMediaProject.repository;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import SE2.SocialMediaProject.model.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface PostRepository extends PagingAndSortingRepository<Post, Long>, CrudRepository<Post, Long> {
 
 }

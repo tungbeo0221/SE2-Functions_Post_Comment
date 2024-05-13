@@ -19,6 +19,12 @@ public class User {
   @OneToMany(mappedBy = "user")
   private List<Post> posts;
 
+  public User(long id, String username, List<Post> posts) {
+    this.id = id;
+    this.username = username;
+    this.posts = posts;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }

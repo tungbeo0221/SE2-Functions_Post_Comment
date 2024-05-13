@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+</head>
+<body>
+  <!-- Declare the following div as a header fragment -->
+  <div class="container" th:fragment="header" style="text-align:center;margin-top:10px;">
+    <p class="lead">
+      <a class="nav-link " th:classappend="(${activePage} == 'index')? 'active'" aria-current="page" href="/">Home</a>
+      <a class="nav-link" th:classappend="(${activePage} == 'add')? 'active'" href="/posts/add">New Post</a>
+    </p>
+    <hr>
+  </div>
+</body>
+</html>
