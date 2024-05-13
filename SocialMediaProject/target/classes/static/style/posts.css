@@ -94,3 +94,9 @@ body {
   font-weight: 400;
   font-size: 12px;
 }
+
+
+.post-thumbnail {
+  clip-path: inset(0px 0px 90% 0px);
+  margin-bottom: -134%;
+}
