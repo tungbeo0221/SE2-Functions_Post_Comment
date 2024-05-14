@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/comments")
+@RequestMapping("")
 public class CommentController {
   @Autowired
   private CommentRepository commentRepository;
@@ -26,17 +26,17 @@ public class CommentController {
   @Autowired
   private PostRepository postRepository;
 
-   @Autowired
-   private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
-   //we dont need this anymore
+  // we dont need this anymore
   // Endpoint to view all comments for a post
 
-  //save comment for a post
-  @PostMapping("/post/{id}")
-  public String saveComment(@PathVariable(value="id") Long postId,
-                            @RequestParam String content,
-                            Model model){
+  // save comment for a post
+  @PostMapping("/posts/{id}/comment")
+  public String saveComment(@PathVariable(value = "id") Long postId,
+      @RequestParam String content,
+      Model model) {
     Optional<Post> postOpt = postRepository.findById(postId);
     if (postOpt.isPresent()) {
       Post post = postOpt.get();
@@ -48,13 +48,13 @@ public class CommentController {
       newComment.setPost(post);
       newComment.setContent(content);
       newComment.setCommentDate(LocalDateTime.now());
+      newComment.setUserId(1L);
       commentRepository.save(newComment);
-      return "redirect:/comments/post/" + postId;
+      return "redirect:/posts/" + postId;
     } else {
-      return "redirect:/comments/post/" + postId + "?error=Post not found";
+      return "redirect:/posts/" + postId + "?error=Post not found";
     }
   }
-
 
   // update an existing comment in a post
   @PutMapping
