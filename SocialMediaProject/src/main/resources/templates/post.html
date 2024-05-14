@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:if="${error}"> Error </title>
+  <title th:unless="${error}" th:text="${post.title}"> Post</title>
+
+  <!-- Link Bootstrap WebJar -->
+  <style>
+    /* Styles for the line below the post */
+      .post-line {
+          border-bottom: 1px solid #ccc;
+          width: 100%; /* Adjust line width to match container */
+          margin-bottom: 10px; /* Add spacing below the line */
+      }
+
+    /* Styles for the comment section */
+        .comment-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+     /* Styles for the comment section */
+        .comment-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+         /* Styles for the comment input and button and profile picture container */
+         .input-button-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            width: 100%;
+         }
+
+         /* Styles for the profile picture */
+        .profile-picture {
+            width: 50px; /* Adjust the width of the profile picture */
+            height: 50px; /* Adjust the height of the profile picture */
+            background-color: #ccc; /* Sample background color */
+           /* Add margin to create space between profile picture and text area */
+}
+
+        /* Styles for the comment input */
+        .comment-input {
+            width: calc(60% - 40px); /* Adjust width based on button size */
+            height: 60px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            flex-grow: 1;
+            /* 5. Text area for typing */
+        }
+
+        /* Styles for the comment button */
+        .comment-button {
+            width: 55px; /* Adjust button width */
+            height: 40px; /* Adjust button height */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            /* 6. Square button */
+        }
+
+        /* Styles for comment and username and profile picture container */
+        .comment-content-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            width: 100%;
+            margin-left: 30px;
+        }
+
+        /* Additional styles for comments */
+        .comment {
+            flex: 1;
+            background-color: #f2f2f2;
+            font-size: 18px;
+            margin-bottom: 10px;
+            width: fit-content;
+            position: relative;
+            word-wrap: break-word;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 8px;
+            /* 7. Comment styling */
+        }
+
+        /* Additional styles for username in comments */
+        .comment-username {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: 500px;
+            /* 8. Username above each comment */
+        }
+
+        /* Additional styles for container of comment area and option buttons*/
+        .comment-option-container{
+            display: flex;
+            align-items: center;
+
+        }
+
+
+  </style>
+</head>
+<body>
+  <!-- Insert the header frament -->
+  <div th:insert="header"></div>
+  <div class="d-flex justify-content-center" style="margin: 10px;">
+    <!-- If no post by the given ID exists -->
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      Sorry, the post you requested doesn't exist!
+    </div>
+    <!-- If a post by the given ID exists -->
+    <article th:unless="${error}">
+      <h1 th:utext="${post.title}">Title</h1>
+      <p th:utext="${post.content}">Content</p>
+    </article>
+
+    <!-- Line below the post -->
+    <div class="post-line"></div>
+
+    <div class="comment-section">
+      <div class="input-button-container">
+        <!-- Profile picture -->
+        <div class="profile-picture"></div>
+        <!-- Text area for typing -->
+        <form  id="commentForm" th:action="@{/comments/posts/{id}(id=${post.id}) }" method="POST">
+          <textarea type="text"
+                    class="comment-input"
+                    placeholder="Comment..."
+                    name="content">
+          </textarea>
+
+          <!-- Button to upload comment -->
+          <button type="submit" id="postButton" class="comment-button">Post</button>
+        </form>
+      </div>
+
+      <!-- Iterating over comments for each post -->
+      <div class="comment-content-container">
+        <!-- Profile picture -->
+        <div class="profile-picture"></div>
+        <div>
+         <!-- &lt;!&ndash; Username of user who commented &ndash;&gt;
+          <div class="comment-username" th:text="${comment.user.username}">username2</div>-->
+          <!-- Container of comment area and option button -->
+        <div class="comment-option-container">
+          <div th:each="comment : ${comments}" class="comment">
+            <!-- Comment content -->
+            <div th:text="${comment.content}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+  </div>
+</body>
+<script>
+  const form = document.getElementById("commentForm")
+  .addEventListener("submit", handleSubmitCmt);
+
+  function handleSubmitCmt(event){
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const jsonData = JSON.stringify(data);
+
+  fetch(form.action, {
+    method:"POST",
+    headers:{
+      "Content-type" : "application/json"
+    },
+    body:jsonData,
+    redirect: "follow",
+  })
+  .then(res => {
+    if(!res.ok){
+      throw new Error('Network response was not ok');
+    }
+  })
+  .catch(err => console.log(err))
+  }
+</script>
+</html>
