@@ -3,7 +3,9 @@ package SE2.SocialMediaProject.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import SE2.SocialMediaProject.model.Comment;
 import SE2.SocialMediaProject.model.Post;
+import SE2.SocialMediaProject.repository.CommentRepository;
 import SE2.SocialMediaProject.repository.PostRepository;
 
 import java.util.List;
@@ -28,10 +30,13 @@ public class PostController {
   @Autowired
   private final PostRepository postRepository;
 
-  private final int PAGINATIONSIZE = 3;
+  private final CommentRepository commentRepository;
 
-  public PostController(PostRepository postRepository) {
+  private final int PAGINATIONSIZE = 999;
+
+  public PostController(PostRepository postRepository, CommentRepository commentRepository) {
     this.postRepository = postRepository;
+    this.commentRepository = commentRepository;
   }
 
   @GetMapping("")
@@ -59,8 +64,12 @@ public class PostController {
 
     if (postOptional.isPresent()) {
       model.addAttribute("post", postOptional.get());
+
+      List<Comment> commentsOptional = commentRepository.findCommentsByPostId(id);
+      model.addAttribute("comments", commentsOptional);
+
     } else {
-      model.addAttribute("error", "no-post");
+      model.addAttribute("error", "No post");
     }
     return "post";
   }

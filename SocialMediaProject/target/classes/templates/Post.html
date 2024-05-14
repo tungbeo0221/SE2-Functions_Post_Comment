@@ -116,49 +116,36 @@
   </style>
 </head>
 <body>
-  <!-- Insert the header frament -->
   <div th:insert="header"></div>
   <div class="d-flex justify-content-center" style="margin: 10px;">
-    <!-- If no post by the given ID exists -->
     <div th:if="${error}" class="alert alert-danger" role="alert">
       Sorry, the post you requested doesn't exist!
     </div>
-    <!-- If a post by the given ID exists -->
     <article th:unless="${error}">
       <h1 th:utext="${post.title}">Title</h1>
       <p th:utext="${post.content}">Content</p>
     </article>
 
-    <!-- Line below the post -->
     <div class="post-line"></div>
 
     <div class="comment-section">
-      <div class="input-button-container">
-        <!-- Profile picture -->
+      <!-- <div class="input-button-container">
         <div class="profile-picture"></div>
-        <!-- Text area for typing -->
         <div  th:object="${newComment}" method="POST">
           <textarea class="comment-input"
                     placeholder="Comment..."
                     th:field="${newComment.content}"></textarea>
         </div>
 
-        <!-- Button to upload comment -->
         <button class="comment-button"
                 th:onclick=" 'createComment(/*[[${post.id}]]*/)' "
         >Post</button>
-      </div>
-      <!-- Iterating over comments for each post -->
+      </div> -->
       <div class="comment-content-container">
-        <!-- Profile picture -->
         <div class="profile-picture"></div>
         <div>
-         <!-- &lt;!&ndash; Username of user who commented &ndash;&gt;
-          <div class="comment-username" th:text="${comment.user.username}">username2</div>-->
-          <!-- Container of comment area and option button -->
         <div class="comment-option-container">
           <div th:each="comment : ${comments}" class="comment">
-            <!-- Comment content -->
             <div th:text="${comment.content}"></div>
           </div>
         </div>

@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 public class Comment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "commentId", nullable = false)
-  private Long commentId;
+  @Column(nullable = false)
+  private Long id;
 
   @Column(name = "userId", nullable = false)
   private Long userId;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "id", nullable = false)
+  @JoinColumn(name = "postId", nullable = false)
   private Post post;
 
   @Column(nullable = false)
@@ -25,20 +25,12 @@ public class Comment {
   @Column(nullable = false)
   private LocalDateTime commentDate;
 
-/*  public Comment(Long commentId, Long userId, Post post, String content, LocalDateTime commentDate) {
-    this.commentId = commentId;
-    this.userId = userId;
-    this.post = post;
-    this.content = content;
-    this.commentDate = commentDate;
-  }*/
-
-  public Long getCommentId() {
-    return commentId;
+  public Long getId() {
+    return id;
   }
 
-  public void setCommentId(Long commentId) {
-    this.commentId = commentId;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Long getUserId() {
