@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class Comment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(nullable = false)
-  private Long id;
+  @Column(name="commentId", nullable = false)
+  private Long commentId;
 
   @Column(name = "userId", nullable = false)
   private Long userId;
@@ -26,11 +26,11 @@ public class Comment {
   private LocalDateTime commentDate;
 
   public Long getId() {
-    return id;
+    return commentId;
   }
 
   public void setId(Long id) {
-    this.id = id;
+    this.commentId = id;
   }
 
   public Long getUserId() {
