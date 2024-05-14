@@ -6,7 +6,15 @@
   <title th:unless="${error}" th:text="${post.title}"> Post</title>
 
   <!-- Link Bootstrap WebJar -->
-  
+  <style>
+    /* Styles for the line below the post */
+      .post-line {
+          border-bottom: 1px solid #ccc;
+          width: 100%; /* Adjust line width to match container */
+          margin-bottom: 10px; /* Add spacing below the line */
+      }
+
+  </style>
 </head>
 <body>
   <!-- Insert the header frament -->
@@ -21,6 +29,11 @@
       <h1 th:utext="${post.title}">Title</h1>
       <p th:utext="${post.content}">Content</p>
     </article>
+
+    <!-- Line below the post -->
+    <div class="post-line"></div>
+
+
  </div>
 </body>
 </html>

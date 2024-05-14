@@ -9,14 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
-@RequestMapping("/api/post/{postId}/comments")
+@RequestMapping("/api/post/{id}/comments")
 public class CommentController {
   @Autowired
   private CommentRepository commentRepository;
@@ -26,16 +28,22 @@ public class CommentController {
 
    @Autowired
    private UserRepository userRepository;
-
-  // Get all comments for a post
-  @GetMapping
-  public ResponseEntity<List<Comment>> getAllCommentsForPost(@PathVariable Long postId) {
-    Post post = postRepository.findById(postId)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-            "Post not found with id " + postId));
-    List<Comment> comments = post.getComments(); // need getter egtComments() in Post entity
-    return new ResponseEntity<>(comments, HttpStatus.OK);
+   
+  // Endpoint to view all comments for a post
+  @RequestMapping("/api/post/{id}/comments")
+  public String viewAllCommentsForPost(@PathVariable(value = "id") Long postId, Model model) {
+    Optional<Post> postOpt = postRepository.findById(postId);
+    if (postOpt.isPresent()) {
+      Post post = postOpt.get();
+      List<Comment> comments = post.getComments(); // Assuming getComments() is a method in Post entity
+      model.addAttribute("post", post);
+      model.addAttribute("comments", comments);
+    } else {
+      model.addAttribute("error", "Post not found");
+    }
+    return "postComments"; // Thymeleaf template name
   }
+
 
   // create a new comment for a post
   @PostMapping
