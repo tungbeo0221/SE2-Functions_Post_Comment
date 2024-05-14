@@ -4,6 +4,7 @@ import SE2.SocialMediaProject.model.Post;
 import SE2.SocialMediaProject.model.Comment;
 import SE2.SocialMediaProject.repository.PostRepository;
 import SE2.SocialMediaProject.repository.CommentRepository;
+import SE2.SocialMediaProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class CommentController {
   @Autowired
   private PostRepository postRepository;
 
-  // @Autowired
-  // private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
   // Get all comments for a post
   @GetMapping
