@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/api/post/{id}/comments")
+@RequestMapping("/post/{id}")
 public class CommentController {
   @Autowired
   private CommentRepository commentRepository;
@@ -28,9 +28,9 @@ public class CommentController {
 
    @Autowired
    private UserRepository userRepository;
-   
+
   // Endpoint to view all comments for a post
-  @RequestMapping("/api/post/{id}/comments")
+  @RequestMapping("/post/{id}")
   public String viewAllCommentsForPost(@PathVariable(value = "id") Long postId, Model model) {
     Optional<Post> postOpt = postRepository.findById(postId);
     if (postOpt.isPresent()) {
