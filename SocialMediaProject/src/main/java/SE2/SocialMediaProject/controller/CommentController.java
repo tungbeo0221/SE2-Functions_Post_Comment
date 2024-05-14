@@ -56,23 +56,10 @@ public class CommentController {
     }
   }
 
-  // update an existing comment in a post
-  @PutMapping
-  public ResponseEntity<Comment> updateComment(@PathVariable Long postId,
-      @PathVariable Long commentId,
-      @RequestBody Comment updatedComment) {
-    Comment comment = commentRepository.findById(commentId)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-            "Comment not found with id " + commentId));
-    comment.setContent(updatedComment.getContent());
-    comment.setCommentDate(LocalDateTime.now());
-    Comment savedComment = commentRepository.save(comment);
-    return new ResponseEntity<>(savedComment, HttpStatus.OK);
-  }
 
   // deleting comment for a post
-  @DeleteMapping("/{commentId}")
-  public ResponseEntity<Void> deleteComment(@PathVariable Long postId, @PathVariable Long commentId) {
+  @DeleteMapping("/post/{id}/{commentId}")
+  public ResponseEntity<Void> deleteComment(@PathVariable(value="id") Long postId, @PathVariable(value="commentId") Long commentId) {
     Post post = postRepository.findById(postId)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
             "Post not found with id " + postId));
