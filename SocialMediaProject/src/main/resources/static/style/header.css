@@ -1,0 +1,13 @@
+.header {
+  display: grid;
+}
+
+.create-post {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.search-post {
+  grid-column: 2;
+  grid-row: 1;
+}
