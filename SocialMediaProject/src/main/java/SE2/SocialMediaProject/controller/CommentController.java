@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/post/{id}")
+@RequestMapping("")
 public class CommentController {
   @Autowired
   private CommentRepository commentRepository;
@@ -26,44 +26,34 @@ public class CommentController {
   @Autowired
   private PostRepository postRepository;
 
-   @Autowired
-   private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
+  // we dont need this anymore
   // Endpoint to view all comments for a post
-  @GetMapping("/showComments")
-  public String viewAllCommentsForPost(@PathVariable(value = "id") Long postId, Model model) {
+
+  // save comment for a post
+  @PostMapping("/posts/{id}/comment")
+  public String saveComment(@PathVariable(value = "id") Long postId,
+      @RequestParam String content,
+      Model model) {
     Optional<Post> postOpt = postRepository.findById(postId);
     if (postOpt.isPresent()) {
       Post post = postOpt.get();
-      List<Comment> comments = post.getComments(); // Assuming getComments() is a method in Post entity
-      model.addAttribute("post", post);
-      model.addAttribute("comments", comments);
+      if (content == null || content.trim().isEmpty()) {
+        model.addAttribute("error", "Comment content cannot be empty");
+        return "post";
+      }
+      Comment newComment = new Comment();
+      newComment.setPost(post);
+      newComment.setContent(content);
+      newComment.setCommentDate(LocalDateTime.now());
+      newComment.setUserId(1L);
+      commentRepository.save(newComment);
+      return "redirect:/posts/" + postId;
     } else {
-      model.addAttribute("error", "Post not found");
+      return "redirect:/posts/" + postId + "?error=Post not found";
     }
-    return "/post/{id}"; // Thymeleaf template name
-  }
-
-
-  // create a new comment for a post
-  @PostMapping("/addComment")
-  public String createComment(@PathVariable(value="id") Long postId,
-                                                Model model) {
-    Optional<Post> postOpt = postRepository.findById(postId);
-        if(postOpt.isPresent()){
-          Post post  = postOpt.get();
-          model.addAttribute("newComment", new Comment());
-          return "/post/{id}";
-        }else{
-          return "/post/{id}";
-        }
-  }
-
-  //save comment for a post
-  @PostMapping("/savecomm")
-  public String saveComment(@PathVariable(value="id") Long postId, @RequestBody Comment newComment){
-   commentRepository.save(newComment);
-   return "/post/{id}";
   }
 
   // update an existing comment in a post
