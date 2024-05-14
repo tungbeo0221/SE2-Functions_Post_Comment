@@ -25,13 +25,13 @@ public class Comment {
   @Column(nullable = false)
   private LocalDateTime commentDate;
 
-  public Comment(Long commentId, Long userId, Post post, String content, LocalDateTime commentDate) {
+/*  public Comment(Long commentId, Long userId, Post post, String content, LocalDateTime commentDate) {
     this.commentId = commentId;
     this.userId = userId;
     this.post = post;
     this.content = content;
     this.commentDate = commentDate;
-  }
+  }*/
 
   public Long getCommentId() {
     return commentId;

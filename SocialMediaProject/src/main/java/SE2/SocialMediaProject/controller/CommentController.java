@@ -30,7 +30,7 @@ public class CommentController {
    private UserRepository userRepository;
 
   // Endpoint to view all comments for a post
-  @RequestMapping("/post/{id}")
+  @GetMapping("/showComments")
   public String viewAllCommentsForPost(@PathVariable(value = "id") Long postId, Model model) {
     Optional<Post> postOpt = postRepository.findById(postId);
     if (postOpt.isPresent()) {
@@ -41,20 +41,29 @@ public class CommentController {
     } else {
       model.addAttribute("error", "Post not found");
     }
-    return "postComments"; // Thymeleaf template name
+    return "/post/{id}"; // Thymeleaf template name
   }
 
 
   // create a new comment for a post
-  @PostMapping
-  public ResponseEntity<Comment> createComment(@PathVariable Long postId, @RequestBody Comment comment) {
-    Post post = postRepository.findById(postId)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-            "Post not found with id " + postId));
-    comment.setPost(post);
-    comment.setCommentDate(LocalDateTime.now());
-    Comment createdComment = commentRepository.save(comment);
-    return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
+  @PostMapping("/addComment")
+  public String createComment(@PathVariable(value="id") Long postId,
+                                                Model model) {
+    Optional<Post> postOpt = postRepository.findById(postId);
+        if(postOpt.isPresent()){
+          Post post  = postOpt.get();
+          model.addAttribute("newComment", new Comment());
+          return "/post/{id}";
+        }else{
+          return "/post/{id}";
+        }
+  }
+
+  //save comment for a post
+  @PostMapping("/savecomm")
+  public String saveComment(@PathVariable(value="id") Long postId, @RequestBody Comment newComment){
+   commentRepository.save(newComment);
+   return "/post/{id}";
   }
 
   // update an existing comment in a post
