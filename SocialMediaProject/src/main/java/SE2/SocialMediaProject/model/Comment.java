@@ -9,37 +9,37 @@ import java.time.LocalDateTime;
 public class Comment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(nullable = false)
-  private Long id;
+  @Column(name="commentId", nullable = false)
+  private Long commentId;
 
-  @Column(name = "userId", nullable = false)
-  private Long userId;
+ /* @Column(name = "userId", nullable = false)
+  private Long userId;*/
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "postId", nullable = false)
+  @JoinColumn(name = "id", nullable = false)
   private Post post;
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   private String content;
 
   @Column(nullable = false)
   private LocalDateTime commentDate;
 
   public Long getId() {
-    return id;
+    return commentId;
   }
 
   public void setId(Long id) {
-    this.id = id;
+    this.commentId = id;
   }
 
-  public Long getUserId() {
+/*  public Long getUserId() {
     return userId;
   }
 
   public void setUserId(Long userId) {
     this.userId = userId;
-  }
+  }*/
 
   public Post getPost() {
     return post;
