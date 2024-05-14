@@ -141,22 +141,22 @@ body {
 .input-button-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 10px;
-  width: 100%;
+  margin-top: 20px;
+
 }
 
   /* Styles for the profile picture */
 .profile-picture {
   width: 50px; /* Adjust the width of the profile picture */
   height: 50px; /* Adjust the height of the profile picture */
-  background-color: #ccc; /* Sample background color */
+  margin: 20px;
   /* Add margin to create space between profile picture and text area */
 }
 
 /* Styles for the comment input */
 .comment-input {
-  width: calc(60% - 40px); /* Adjust width based on button size */
+  width: calc(600px - 0px); /* Adjust width based on button size */
   height: 60px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -168,7 +168,7 @@ body {
 
 /* Styles for the comment button */
 .comment-button {
-  width: 55px; /* Adjust button width */
+  width: 50px; /* Adjust button width */
   height: 40px; /* Adjust button height */
   background-color: #007bff;
   color: #fff;
@@ -178,38 +178,47 @@ body {
   /* 6. Square button */
 }
 
-/* Styles for comment and username and profile picture container */
-.comment-content-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  width: 100%;
-  margin-left: 30px;
-}
-
 /* Additional styles for comments */
-.comment {
+.comment-username--time-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 5px;
   flex: 1;
-  background-color: #f2f2f2;
-  font-size: 18px;
   margin-bottom: 10px;
-  width: fit-content;
   position: relative;
-  word-wrap: break-word;
-  border: 1px solid #ccc;
   padding: 8px;
-  border-radius: 8px;
+
   /* 7. Comment styling */
 }
 
-/* Additional styles for username in comments */
-.comment-username {
-  font-weight: bold;
-  margin-bottom: 5px;
+.cmt-username{
+
   font-size: 16px;
   font-weight: 500px;
-  /* 8. Username above each comment */
+  font-family: "Outfit";
+}
+
+.cmt-time{
+font-family: "Outfit";
+margin-top: 1px;
+margin-bottom: 1px;
+font-size: 10px;
+font-weight: thin;
+}
+
+.cmt-container{
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  word-wrap: break-word;
+  width: fit-content;
+  background-color: #f2f2f2;
+}
+
+.cmt-content{
+font-family: "Outfit";
+font-size: 16px;
 }
 
 /* Additional styles for container of comment area and option buttons*/
