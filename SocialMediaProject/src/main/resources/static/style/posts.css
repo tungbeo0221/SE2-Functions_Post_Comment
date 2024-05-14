@@ -95,8 +95,125 @@ body {
   font-size: 12px;
 }
 
-
 .post-thumbnail {
   clip-path: inset(0px 0px 90% 0px);
   margin-bottom: -134%;
+}
+
+.post-detail {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 0;
+}
+
+.post-content {
+  font-family: "Outfit";
+  font-weight: 300;
+  font-size: 24px;
+  color: black;
+}
+
+/* Styles for the line below the post */
+.post-line {
+  border-bottom: 1px solid #ccc;
+  width: 100%; /* Adjust line width to match container */
+  margin-bottom: 10px; /* Add spacing below the line */
+}
+
+/* Styles for the comment section */
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+/* Styles for the comment section */
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+  /* Styles for the comment input and button and profile picture container */
+.input-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+  /* Styles for the profile picture */
+.profile-picture {
+  width: 50px; /* Adjust the width of the profile picture */
+  height: 50px; /* Adjust the height of the profile picture */
+  background-color: #ccc; /* Sample background color */
+  /* Add margin to create space between profile picture and text area */
+}
+
+/* Styles for the comment input */
+.comment-input {
+  width: calc(60% - 40px); /* Adjust width based on button size */
+  height: 60px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  flex-grow: 1;
+  /* 5. Text area for typing */
+}
+
+/* Styles for the comment button */
+.comment-button {
+  width: 55px; /* Adjust button width */
+  height: 40px; /* Adjust button height */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* 6. Square button */
+}
+
+/* Styles for comment and username and profile picture container */
+.comment-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin-left: 30px;
+}
+
+/* Additional styles for comments */
+.comment {
+  flex: 1;
+  background-color: #f2f2f2;
+  font-size: 18px;
+  margin-bottom: 10px;
+  width: fit-content;
+  position: relative;
+  word-wrap: break-word;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  /* 7. Comment styling */
+}
+
+/* Additional styles for username in comments */
+.comment-username {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500px;
+  /* 8. Username above each comment */
+}
+
+/* Additional styles for container of comment area and option buttons*/
+.comment-option-container{
+  display: flex;
+  align-items: center;
 }
