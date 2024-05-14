@@ -10,12 +10,16 @@ body {
   justify-content: center;
 }
 
-#container {
-  width: 800px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.container {
+  width: 100%;
+  padding: 25px;
+  background-color: #EAEAEA;
+  gap: 25px;
+  display: grid;
+}
+
+.posts {
+  grid-column: 2;
 }
 
 .post-item {
@@ -23,12 +27,12 @@ body {
   flex-direction: column;
   margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer; 
   transition: background-color 0.3s ease;
   gap: 0;
   padding: 15px;
+  background-color: white;
 }
 
 .post-item:hover {
@@ -101,10 +105,18 @@ body {
 }
 
 .post-detail {
+  grid-column: 3 /4;
+  background-color: white;
+  padding: 25px;
+  border-radius: 5px;
+}
+
+.post-detail__detail {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   gap: 0;
+  background-color: white;
 }
 
 .post-content {
@@ -112,6 +124,7 @@ body {
   font-weight: 300;
   font-size: 24px;
   color: black;
+  background-color: white;
 }
 
 /* Styles for the line below the post */
@@ -126,17 +139,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    background-color: white;
 }
-/* Styles for the comment section */
-.comment-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
+
   /* Styles for the comment input and button and profile picture container */
 .input-button-container {
   display: flex;
