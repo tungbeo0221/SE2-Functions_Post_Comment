@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease;
+  gap: 0;
+  padding: 15px;
+  background-color: white;
+  row-gap: 15px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 15px;
+}
+
+.navbar__item {
+  display: flex;
+  align-items: center;
+  font-family: "Outfit";
+  font-weight: 300;
+  font-size: 24px;
+  gap: 10px;
+}
